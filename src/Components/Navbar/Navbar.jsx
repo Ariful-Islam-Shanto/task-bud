@@ -1,9 +1,11 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import Container from "../Container/Container";
+import useAuth from "../../Hooks/useAuth";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
-
+    const {user, logOut} = useAuth();
     const navigate = useNavigate();
 
   const navOptions = (
@@ -40,6 +42,16 @@ const Navbar = () => {
       </li>
     </>
   );
+
+  //? Logout
+  const  handleLogOut = () => {
+    logOut()
+    .then(res => {
+        toast.success('Successfully logged out.')
+        navigate('/login')
+    })
+  }
+
   return (
     <div className="bg-transparent">
     {/* <div className="bg-[#f8f7f3]"> */}
@@ -79,43 +91,56 @@ const Navbar = () => {
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal px-1">{navOptions}</ul>
           </div>
-          <div className="navbar-end">
+          <div className="navbar-end flex gap-4">
 
             {/* //? Avatar */}
-            <div className="dropdown dropdown-end">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost btn-circle avatar"
-              >
-                <div className="w-10 rounded-full">
-                  <img
-                    alt="Tailwind CSS Navbar component"
-                    src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-                  />
+            {
+                user &&  <div className="dropdown dropdown-end">
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="btn btn-ghost btn-circle avatar"
+                >
+                  <div className="w-10 rounded-full">
+                    <img
+                      alt="Tailwind CSS Navbar component"
+                      src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+                    />
+                  </div>
                 </div>
+                <ul
+                  tabIndex={0}
+                  className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+                >
+                  <li>
+                    <a className="justify-between">
+                      Profile
+                      <span className="badge">New</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a className="justify-between">
+                     
+                      {user?.displayName}
+                    </a>
+                  </li>
+                  <li>
+                    <a>Settings</a>
+                  </li>
+                  <li>
+                    <a>Logout</a>
+                  </li>
+                </ul>
               </div>
-              <ul
-                tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-              >
-                <li>
-                  <a className="justify-between">
-                    Profile
-                    <span className="badge">New</span>
-                  </a>
-                </li>
-                <li>
-                  <a>Settings</a>
-                </li>
-                <li>
-                  <a>Logout</a>
-                </li>
-              </ul>
-            </div>
+            }
+           {
+            user ?  <button onClick={() => {
+                handleLogOut()
+            }} className=" border-2 px-5 py-2 hover:border-[#596e92] rounded-md transition-all ease-in-out text-gray-800  font-medium">Logout</button> :
             <button onClick={() => {
                 navigate('/login')
-            }} className="btn">Sign In</button>
+            }} className="px-5 py-2 transition-all ease-in-out  border-2 border-[#596e92] rounded-md text-gray-800 font-medium">Sign In</button>
+           }
           </div>
         </div>
       </Container>

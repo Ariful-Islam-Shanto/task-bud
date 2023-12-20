@@ -6,11 +6,13 @@ import { updateProfile } from 'firebase/auth';
 import { auth } from '../../Firebase/firebase.config';
 import useAuth from '../../Hooks/useAuth';
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
 
   const {createUser} = useAuth();
   const axiosPublic = useAxiosPublic();
+  const navigate = useNavigate();
 
   const image_hosting_key = import.meta.env.VITE_IMAGE_BB_API_KEY;
   const imageBB_Hosting_Api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -90,7 +92,7 @@ const Register = () => {
           }
           // setProcessing(false)
           toast.success("Successfully Created Account.");
-          // navigate("/");
+          navigate("/");
 
         // }
     
