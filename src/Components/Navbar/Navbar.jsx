@@ -1,8 +1,11 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Container from "../Container/Container";
 
 const Navbar = () => {
+
+    const navigate = useNavigate();
+
   const navOptions = (
     <>
       <li>
@@ -110,7 +113,9 @@ const Navbar = () => {
                 </li>
               </ul>
             </div>
-            <a className="btn">Sign In</a>
+            <button onClick={() => {
+                navigate('/login')
+            }} className="btn">Sign In</button>
           </div>
         </div>
       </Container>
