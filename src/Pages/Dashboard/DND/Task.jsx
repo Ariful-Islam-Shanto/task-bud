@@ -3,11 +3,26 @@ import React, { useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
 import { FaPenSquare, FaTrashAlt } from "react-icons/fa";
 import UpdateModal from "./Modal/UpdateModal";
+import useTodo from "../../../Hooks/useTodo";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import toast from "react-hot-toast";
 
 const Task = ({ item, index }) => {
-
+  const {refetch} = useTodo();
+  const axiosPublic = useAxiosPublic();
   const [selectedItem, setSelectedItem] = useState({});
   // console.log(`Task Component - Item ID: ${item?.id}, Index: ${index}`);
+
+  const {mutate} = useMutation({
+    mutationKey : ['deleteTodo'],
+    mutationFn : async (id) => {
+        const { data } = await axiosPublic.delete(`/deleteTodo/${id}`)
+        if(data.deletedCount > 0) {
+            toast.success('Deleted todo');
+            refetch();
+        }
+    }
+  })
 
   const handleUpdate = (item) => {
     setSelectedItem(item)
@@ -40,7 +55,9 @@ const Task = ({ item, index }) => {
                     <button   onClick={() => {document.getElementById("my_modal_5").showModal()
                     handleUpdate(item)
                 }} className="btn btn-primary"><FaPenSquare/></button>
-                    <button className="btn btn-ghost"><FaTrashAlt/></button>
+                    <button onClick={() => {
+                        mutate(item?._id);
+                    }} className="btn btn-ghost"><FaTrashAlt/></button>
                   </div>
                 </div>
               </div>
