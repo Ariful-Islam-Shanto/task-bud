@@ -4,6 +4,8 @@ import Layout from '../Layout/Layout';
 import Home from '../Pages/Home/Home';
 import Login from '../Pages/Login/Login';
 import Register from '../Pages/Register/Register';
+import Dashboard from '../Pages/Dashboard/Dashboard';
+import CreateTodo from '../Pages/Dashboard/CreateTodo/CreateTodo';
 
 const routes = createBrowserRouter([
     {
@@ -21,6 +23,16 @@ const routes = createBrowserRouter([
             {
                 path : '/register',
                 element : <Register/>
+            }
+        ]
+    },
+    {
+        path : 'dashboard',
+        element : <Dashboard/>,
+        children : [
+            {
+                path : "createTodo",
+                element : <CreateTodo/>
             }
         ]
     }
