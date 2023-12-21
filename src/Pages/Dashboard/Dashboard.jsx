@@ -8,25 +8,28 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdCloseCircle } from "react-icons/io";
 import useAuth from "../../Hooks/useAuth";
 import { FaRegUserCircle } from "react-icons/fa";
+import useTodo from "../../Hooks/useTodo";
 // import { Helmet } from "react-helmet";
 
 const Dashboard = () => {
   const {user} = useAuth();
+  const todos = useTodo();
 //   const [role, isLoading] = useRole();
   const [isOpen , setIsOpen] = useState();
 //   console.log(role);
   
   return (
+    // style={{
+    //     background : `url("https://i.postimg.cc/cJTZb0LS/Bannger.png")`
+    //    }}
 
-<div style={{
-            background : `url("https://i.postimg.cc/cJTZb0LS/Bannger.png")`
-           }} className="drawer bg-transparent backdrop-blur-2xl">
+<div className="drawer bg-transparent backdrop-blur-2xl bg-cover">
 
   <input id="my-drawer" type="checkbox" className="drawer-toggle" />
   <div className="drawer-content">
   <div className=" min-h-screen flex">
       
-      <div className="hidden lg:block xl:block lg:w-64 xl:64 bg-[#3e1a3b]">
+      <div className="hidden lg:block xl:block lg:w-64 xl:w-40 bg-[#3e1a3b]">
         <h1 className="text-2xl text-gray-300 font-bold text-center">Tech Bud</h1>
         <ul className="menu text-center p-4">
          {/* User menu */}
@@ -76,7 +79,7 @@ const Dashboard = () => {
         <div className="flex bg-transparent backdrop-blur-2xl border-2 border-gray-600 rounded-lg p-4 items-center justify-between">
       <div>
       <p className=" text-gray-600 font-thin">Hello {user && user?.displayName}</p>
-        <h1 className="text-4xl font-semibold text-black">You have got 0 task today.</h1>
+        <h1 className="text-4xl font-semibold text-black">You have got {todos && todos.length} task today.</h1>
       </div>
       <div className="flex items-center gap-2">
        {user.photoURL ?  <img src={user?.photoURL || ""}  alt="" />

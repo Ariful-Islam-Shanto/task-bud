@@ -1,37 +1,54 @@
 import React, { useEffect, useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import Column from "./Column";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import useTodo from "../../../Hooks/useTodo";
 
 const ManageTask = () => {
   const [todo, setTodo] = useState([]);
   const [onGoingTodo, setOnGoingTodo] = useState([]);
   const [completedTodo, setCompletedTodo] = useState([]);
+  const {todos} = useTodo();
+  console.log(todos);
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/todos")
-      .then((response) => response.json())
-      .then((json) => {
-        // console.log(json);
-        const todo = json.slice(0, 10);
-        const onGoing = json.slice(0, 20).filter((todo) => {
-          return todo.completed === false;
-        });
+ 
+    if(todos) {
+      const allTodos = todos.filter(item => item.status === 'todo');
+      const onGoing = todos.filter(item => item.status === 'ongoing');
+      const completed = todos.filter(item => item.status === 'completed');
+  
+      setTodo(allTodos);
+    //   console.log('alltodos', allTodos);
+      setOnGoingTodo(onGoing);
+      setCompletedTodo(completed);
+    }
+  }, [todos])
+//   useEffect(() => {
+//     fetch("https://jsonplaceholder.typicode.com/todos")
+//       .then((response) => response.json())
+//       .then((json) => {
+//         // console.log(json);
+//         const todo = json.slice(0, 10);
+//         const onGoing = json.slice(0, 20).filter((todo) => {
+//           return todo.completed === false;
+//         });
 
-        const completed = json.slice(0, 20).filter((todo) => {
-          return todo.completed === true;
-        });
+//         const completed = json.slice(0, 20).filter((todo) => {
+//           return todo.completed === true;
+//         });
 
-        setTodo(todo);
-        setOnGoingTodo(onGoing);
-        setCompletedTodo(completed);
+//         setTodo(todo);
+//         setOnGoingTodo(onGoing);
+//         setCompletedTodo(completed);
 
-        console.log(json); //
-      });
-  }, []);
+//         console.log(json); //
+//       });
+//   }, []);
 
   const handleDragEnd = (result) => {
     const { destination, source, draggableId } = result;
-    //   console.log("draggable id", typeof parseInt(draggableId));
+      console.log("draggable id", typeof draggableId);
     //? If the task is dragged but put in into the same
     //? Box again then return the result.
 
@@ -47,11 +64,11 @@ const ManageTask = () => {
     //? Create two function for find and remove the specific
     //? id that has been dragged.
     const findItemById = (id, array) => {
-      return array.find((item) => item.id === parseInt(id));
+      return array.find((item) => item._id === id);
     };
 
     const removeItemById = (id, array) => {
-      return array.filter((item) => item.id !== parseInt(id));
+      return array.filter((item) => item._id !== id);
     };
 
     //? testing purpose
@@ -83,12 +100,12 @@ const ManageTask = () => {
       updatedTodo = [{ ...task }, ...updatedTodo];
     } else if (destination.droppableId === "2") {
       updatedOnGoingTodo = [
-        { ...task, completed: false },
+        { ...task, status : 'ongoing' },
         ...updatedOnGoingTodo,
       ];
     } else {
       updatedCompletedTodo = [
-        { ...task, completed: false },
+        { ...task, status : 'completed'},
         ...updatedCompletedTodo,
       ];
     }
@@ -99,6 +116,7 @@ const ManageTask = () => {
     setOnGoingTodo(updatedOnGoingTodo);
     setCompletedTodo(updatedCompletedTodo);
   };
+  
   return (
     <div className="min-h-[calc(100vh-120px)] space-y-8 flex items-center flex-col justify-center">
       <DragDropContext onDragEnd={handleDragEnd}>
@@ -106,7 +124,7 @@ const ManageTask = () => {
           Manage Todo
         </h1>
 
-        <div className="overflow-y-scroll max-h-[calc(100vh-200px)] gap-4 grid grid-cols-3">
+        <div className="overflow-y-scroll max-h-[calc(100vh-200px)] w-full gap-4 grid grid-cols-3">
           <Column id={"1"} tasks={todo} title={"Todo"} />
           <Column id={"2"} tasks={onGoingTodo} title={"Ongoing"} />
           <Column id={"3"} tasks={completedTodo} title={"Completed"} />

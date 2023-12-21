@@ -4,9 +4,9 @@ import Task from './Task';
 
 const Column = ({title, tasks, id}) => {
     return (
-        <div className='bg-gray-400 p-4 h-full w-full border-black border-2'>
-            <h1 className='text-center text-xl font-bold'>{title}</h1>
+        <div className='bg-gray-100  p-4 h-full w-full border-black border-2'>
           
+         <div className='p-2 bg-[#3e1a3b] w-full'>  <h1 className='text-center text-xl font-bold text-gray-200'>{title}</h1></div>          
             <Droppable droppableId={id}>
               {(provided, snapshot) => {
 
@@ -22,7 +22,7 @@ return (
                    <Task
                    item={item}
                    index={index}
-                   key={item?.id}
+                   key={item?._id}
                    />
                   ))}
                   {provided.placeholder}
