@@ -6,6 +6,7 @@ import Login from '../Pages/Login/Login';
 import Register from '../Pages/Register/Register';
 import Dashboard from '../Pages/Dashboard/Dashboard';
 import CreateTodo from '../Pages/Dashboard/CreateTodo/CreateTodo';
+import ManageTask from '../Pages/Dashboard/DND/ManageTask';
 
 const routes = createBrowserRouter([
     {
@@ -33,6 +34,10 @@ const routes = createBrowserRouter([
             {
                 path : "createTodo",
                 element : <CreateTodo/>
+            },
+            {
+                path : "todo",
+                element : <ManageTask/>
             }
         ]
     }

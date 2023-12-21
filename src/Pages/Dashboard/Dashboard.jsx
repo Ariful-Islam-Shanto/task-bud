@@ -6,23 +6,28 @@ import { NavLink, Outlet } from "react-router-dom";
 // import AdminMenu from "./Menu/AdminMenu/AdminMenu";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdCloseCircle } from "react-icons/io";
+import useAuth from "../../Hooks/useAuth";
+import { FaRegUserCircle } from "react-icons/fa";
 // import { Helmet } from "react-helmet";
 
 const Dashboard = () => {
-
+  const {user} = useAuth();
 //   const [role, isLoading] = useRole();
   const [isOpen , setIsOpen] = useState();
 //   console.log(role);
   
   return (
 
-<div className="drawer">
+<div style={{
+            background : `url("https://i.postimg.cc/cJTZb0LS/Bannger.png")`
+           }} className="drawer bg-transparent backdrop-blur-2xl">
 
   <input id="my-drawer" type="checkbox" className="drawer-toggle" />
   <div className="drawer-content">
   <div className=" min-h-screen flex">
       
       <div className="hidden lg:block xl:block lg:w-64 xl:64 bg-[#3e1a3b]">
+        <h1 className="text-2xl text-gray-300 font-bold text-center">Tech Bud</h1>
         <ul className="menu text-center p-4">
          {/* User menu */}
          {/* {!isLoading && role === 'guest' && <UserMenu/>} */}
@@ -30,16 +35,16 @@ const Dashboard = () => {
          {/* {!isLoading && role === 'agent' && <AgentMenu/>} */}
             {/* Admin menu */}
          {/* {!isLoading && role === 'admin' && <AdminMenu/>} */}
-         <NavLink
+         {/* <NavLink
   to="/dashboard"
   className={({ isActive, isPending }) =>
     isPending ? "pending" : isActive ? "text-white text-center bg-[#D94ACD] rounded-sm" : "text-gray-400 rounded-sm text-center"
   }
 >
 <li className="flex items-center justify-center w-full"><a className="w-full flex items-center justify-center">Dashboard</a></li>
-</NavLink>
+</NavLink> */}
 <NavLink
-  to="/todo"
+  to="todo"
   className={({ isActive, isPending }) =>
     isPending ? "pending" : isActive ? "text-white text-center bg-[#D94ACD] rounded-sm" : "text-gray-400 rounded-sm text-center"
   }
@@ -67,7 +72,25 @@ const Dashboard = () => {
             </li>
         </ul>
       </div>
-      <div className="flex-1">
+      <div className="flex-1 px-12 py-6 ">
+        <div className="flex bg-transparent backdrop-blur-2xl border-2 border-gray-600 rounded-lg p-4 items-center justify-between">
+      <div>
+      <p className=" text-gray-600 font-thin">Hello {user && user?.displayName}</p>
+        <h1 className="text-4xl font-semibold text-black">You have got 0 task today.</h1>
+      </div>
+      <div className="flex items-center gap-2">
+       {user.photoURL ?  <img src={user?.photoURL || ""}  alt="" />
+       :
+       <FaRegUserCircle className="text-6xl"/>
+       }
+     <>
+     <h1 className=" font-medium text-gray-700">
+              {user?.displayName}
+        </h1>
+       <p>{user?.occupation ? user?.occupation : " "}</p>
+     </>
+      </div>
+        </div>
         <Outlet />
       </div>
     </div>
