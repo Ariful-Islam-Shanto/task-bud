@@ -12,6 +12,7 @@ const Column = ({title, tasks, id}) => {
 
 return (
                 <div
+                className='h-full'
                   ref={provided.innerRef}
                   {...provided.droppableProps}
                   style={{

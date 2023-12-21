@@ -124,7 +124,7 @@ const ManageTask = () => {
           Manage Todo
         </h1>
 
-        <div className="overflow-y-scroll max-h-[calc(100vh-200px)] w-full gap-4 grid grid-cols-3">
+        <div className="overflow-y-scroll min-h-[calc(100vh-200px)] w-full gap-4 grid grid-cols-3">
           <Column id={"1"} tasks={todo} title={"Todo"} />
           <Column id={"2"} tasks={onGoingTodo} title={"Ongoing"} />
           <Column id={"3"} tasks={completedTodo} title={"Completed"} />

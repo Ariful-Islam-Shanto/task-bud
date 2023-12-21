@@ -9,6 +9,9 @@ import { IoMdCloseCircle } from "react-icons/io";
 import useAuth from "../../Hooks/useAuth";
 import { FaRegUserCircle } from "react-icons/fa";
 import useTodo from "../../Hooks/useTodo";
+import { LuList, LuListTodo } from "react-icons/lu";
+import { FaHome } from "react-icons/fa";
+import { IoMdAddCircleOutline } from "react-icons/io";
 // import { Helmet } from "react-helmet";
 
 const Dashboard = () => {
@@ -52,7 +55,9 @@ const Dashboard = () => {
     isPending ? "pending" : isActive ? "text-white text-center bg-[#D94ACD] rounded-sm" : "text-gray-400 rounded-sm text-center"
   }
 >
-<li className="flex items-center justify-center w-full"><a className="w-full flex items-center justify-center">Todo</a></li>
+<li className="flex items-center justify-center w-full">
+    
+    <a className="w-full flex items-center justify-center"> <LuListTodo/> Todo</a></li>
 </NavLink>
 <NavLink
   to="createTodo"
@@ -60,19 +65,17 @@ const Dashboard = () => {
     isPending ? "pending" : isActive ? "text-white text-center bg-[#D94ACD] rounded-sm" : "text-gray-400 rounded-sm text-center"
   }
 >
-<li className="flex items-center justify-center w-full"><a className="w-full flex items-center justify-center">Create Todo</a></li>
+<li className="flex items-center justify-center w-full"><a className="w-full flex items-center justify-center"><IoMdAddCircleOutline/>Add Todo</a></li>
 </NavLink>
          <div className="divider"></div> 
-        <li className="text-center">
-            <NavLink
-              to="/"
-              className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "bg-[#D94ACD] text-black" : " "
-              }
-            >
-             Home
-            </NavLink>
-            </li>
+         <NavLink
+  to="/"
+  className={({ isActive, isPending }) =>
+    isPending ? "pending" : isActive ? "text-white text-center bg-[#D94ACD] rounded-sm" : "text-gray-400 rounded-sm text-center"
+  }
+>
+<li className="flex items-center justify-center w-full"><a className="w-full flex items-center justify-center"><FaHome/>Home</a></li>
+</NavLink>
         </ul>
       </div>
       <div className="flex-1 px-12 py-6 ">
