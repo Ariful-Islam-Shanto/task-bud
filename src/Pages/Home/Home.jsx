@@ -3,6 +3,7 @@ import Banner from "./Banner/Banner";
 import Navbar from "../../Components/Navbar/Navbar";
 import UserBenefits from "./UserBenefitsShowcase/UserBenefits";
 import Container from "../../Components/Container/Container";
+import Footer from "./Footer/Footer";
 
 const Home = () => {
   return (
@@ -10,8 +11,10 @@ const Home = () => {
       <div
         style={{
           background: `url("https://i.postimg.cc/cJTZb0LS/Bannger.png")`,
+          backgroundRepeat : 'no-repeat',
+          backgroundSize : 'cover'
         }}
-        className="bg-cover"
+        className="bg-cover w-full"
       >
         <Navbar />
         <Banner />
@@ -19,6 +22,7 @@ const Home = () => {
       <Container>
         <UserBenefits />
       </Container>
+      <Footer/>
     </div>
   );
 };

@@ -19,7 +19,7 @@ const UserBenefitsCard = ({benefits, isTrue}) => {
           </p>
           <div className="space-y-4">
             {benefits?.benefits?.map((item, idx) => 
-                <p  key={idx}><IoCheckmarkDoneCircleSharp/> {item}</p>
+                <p className="flex items-center gap-3" key={idx}><IoCheckmarkDoneCircleSharp/> {item}</p>
                 )}
           </div>
         </div>

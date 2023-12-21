@@ -10,12 +10,12 @@ const Banner = () => {
     <div className="bg-transparent">
       {/* <div className="   bg-[#f8f7f3]"> */}
       <Container>
-        <div className="flex items-center min-h-[calc(100vh-50px)] justify-center">
-          <div className="flex-1 space-y-6">
-            <h1 className="text-6xl font-bold text-black">
+        <div className="flex flex-col-reverse md:flex-row items-center min-h-[calc(100vh-50px)] justify-center">
+          <div className="flex-1 text-center md:text-left space-y-6">
+            <h1 className="text-3xl md:text-3xl lg:text-5xl xl:text-6xl font-bold text-black">
               Simplify Your Tasks, Amplify Your Productivity.
             </h1>
-            <p className="text-neutral-600 font-medium">
+            <p className="text-neutral-600 text-md md:text-xs lg:text-lg font-medium">
               TaskBud streamlines your tasks for maximum efficiency. Experience
               a simplified approach to productivity with our user-friendly
               platform. Achieve more with less effort – your go-to solution for
