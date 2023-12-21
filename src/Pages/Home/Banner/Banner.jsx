@@ -1,9 +1,10 @@
 import React from "react";
 import Container from "../../../Components/Container/Container";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../../../Hooks/useAuth";
 
 const Banner = () => {
-
+  const {user} = useAuth();
   const navigate = useNavigate();
 
   return (
@@ -22,7 +23,11 @@ const Banner = () => {
               efficient task management.
             </p>
             <button onClick={() => {
-                navigate('/login')
+                if(user) {
+                  navigate('dashboard/todo')
+                }else{
+                  navigate('/')
+                }
             }} className="transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 px-5 py-3 rounded-lg border-none text-gray-300 font-medium">
                Let's Explore
             </button>

@@ -58,35 +58,34 @@ const CreateTodo = () => {
 
   return (
     <div>
-      <h1 className="text-4xl font-thin text-gray-800">New Task</h1>
+      <h1 className="text-4xl font-thin text-gray-400">New Task</h1>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="card-body grid grid-cols-1 md:grid-cols-4"
+        className="card-body px-0 grid grid-cols-1 md:grid-cols-4"
       >
-        <div className="form-control col-span-1 md:col-span-4">
+        <div className="form-control col-span-1 text-gray-300 md:col-span-4">
           <label className="label">
-            <span className="label-text">Enter Task Name</span>
+            <span className="label-text text-gray-300">Enter Task Name</span>
           </label>
           <input
             {...register("title")}
             name="title"
             type="text"
             placeholder="title"
-            className="input border-0 border-b-4 focus:border-b-2 border-gray-800"
+            className="input border-0 placeholder:text-gray-700 border-b-4 focus:border-b-2 text-gray-700 border-gray-800"
             required
           />
         </div>
 
-        <div className="form-control col-span-1 md:col-span-2">
+        <div className="form-control col-span-1 text-gray-300 md:col-span-2">
           <label className="label">
-            <span className="label-text">Category</span>
+            <span className="label-text text-gray-300">Priority</span>
           </label>
-          {/* <input type="text" {...register('category')} name='category'  placeholder="Category" className="input input-bordered" required /> */}
           <select
             defaultValue="default"
             {...register("priority")}
             name="priority"
-            className=" px-5 py-3 rounded-md border-0 border-b-4 focus:border-b-2 border-gray-800"
+            className=" px-5 py-3 rounded-md border-0 border-b-4 focus:border-b-2 text-gray-700 border-gray-800"
           >
             <option disabled value="default">
               Select a Priority
@@ -97,23 +96,23 @@ const CreateTodo = () => {
           </select>
         </div>
 
-        <div className="form-control col-span-1 md:col-span-2">
+        <div className="form-control text-gray-300 col-span-1 md:col-span-2">
           <label className="label">
-            <span className="label-text">Deadline</span>
+            <span className="label-text text-gray-300">Deadline</span>
           </label>
           <input
             {...register("deadline")}
             name="deadline"
             type="date"
             placeholder="Agent name"
-            className="border-0 border-b-4 focus:border-b-2 border-gray-800 input input-bordered"
+            className="border-0 border-b-4 focus:border-b-2 border-gray-800 text-gray-700 input input-bordered"
             required
           />
         </div>
 
-        <div className="form-control col-span-1 md:col-span-4">
+        <div className="form-control text-gray-300 col-span-1 md:col-span-4">
           <label className="label">
-            <span className="label-text"></span>
+            <span className="label-text text-gray-300">Description</span>
           </label>
           <textarea
             {...register("description")}
@@ -121,7 +120,7 @@ const CreateTodo = () => {
             id=""
             cols="30"
             rows="2"
-            className="px-5 py-5 rounded-lg border-0 border-b-4 focus:border-b-2 border-gray-800"
+            className="px-5 py-5 rounded-lg border-0 border-b-4 focus:border-b-2 placeholder:text-gray-700 text-gray-700 border-gray-800"
             placeholder="Description"
           ></textarea>
         </div>
@@ -129,9 +128,9 @@ const CreateTodo = () => {
         <div className="form-control mt-6 w-full">
           <button
             type="submit"
-            className="btn bg-[#D94ACD] border-none text-gray-800 "
+            className="btn bg-[#3b82f6] border-none text-gray-800 "
           >
-            Create Todo
+            Add Todo
           </button>
         </div>
       </form>

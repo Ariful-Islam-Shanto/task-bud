@@ -5,6 +5,7 @@ import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import useTodo from "../../../Hooks/useTodo";
 
 const ManageTask = () => {
+    const axiosPublic = useAxiosPublic();
   const [todo, setTodo] = useState([]);
   const [onGoingTodo, setOnGoingTodo] = useState([]);
   const [completedTodo, setCompletedTodo] = useState([]);
@@ -46,9 +47,9 @@ const ManageTask = () => {
 //       });
 //   }, []);
 
-  const handleDragEnd = (result) => {
+  const handleDragEnd = async (result) => {
     const { destination, source, draggableId } = result;
-      console.log("draggable id", typeof draggableId);
+    //   console.log("draggable id", typeof draggableId);
     //? If the task is dragged but put in into the same
     //? Box again then return the result.
 
@@ -94,6 +95,19 @@ const ManageTask = () => {
       ...completedTodo,
     ]);
 
+    if(task) {
+        let status;
+        if(destination.droppableId === '1') {
+            status = 'todo'
+        }else if(destination === '2') {
+            status = 'ongoing';
+        }else {
+            status = 'completed';
+        }
+        const { data } = await axiosPublic.put(`/status/${task?._id}`, {status});
+        console.log(data);
+    }
+
     console.log("dragged task",task);
     // Add the dragged task to the destination droppable area
     if (destination.droppableId === "1") {
@@ -118,13 +132,13 @@ const ManageTask = () => {
   };
   
   return (
-    <div className="min-h-[calc(100vh-120px)] space-y-8 flex items-center flex-col justify-center">
+    <div className="min-h-[calc(100vh-120px)] py-3 space-y-8 flex items-left flex-col justify-center">
       <DragDropContext onDragEnd={handleDragEnd}>
-        <h1 className="text-4xl text-center font-bold text-gray-800">
+        <h1 className="text-4xl text-left font-thin text-gray-300">
           Manage Todo
         </h1>
 
-        <div className="overflow-y-scroll min-h-[calc(100vh-200px)] w-full gap-4 grid grid-cols-3">
+        <div className="overflow-y-scroll min-h-[calc(100vh-200px)] w-full gap-4 grid grid-cols-1 lg:grid-cols-2">
           <Column id={"1"} tasks={todo} title={"Todo"} />
           <Column id={"2"} tasks={onGoingTodo} title={"Ongoing"} />
           <Column id={"3"} tasks={completedTodo} title={"Completed"} />

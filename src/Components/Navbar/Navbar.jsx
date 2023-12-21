@@ -14,17 +14,27 @@ const Navbar = () => {
         <NavLink
           to="/"
           className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "active" : ""
+            isPending ? "pending" : isActive ? "text-[#3b82f6]" : ""
           }
         >
           Home
         </NavLink>
       </li>
+      {user && user?.email &&  <li>
+        <NavLink
+          to="/dashboard/todo"
+          className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? "text-[#3b82f6]" : ""
+          }
+        >
+          dashboard
+        </NavLink>
+      </li>}
       <li>
         <NavLink
-          to="/messages"
+          to="/about"
           className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "active" : ""
+            isPending ? "pending" : isActive ? "text-[#3b82f6]" : ""
           }
         >
           About
@@ -34,7 +44,7 @@ const Navbar = () => {
         <NavLink
           to="/contact"
           className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "active" : ""
+            isPending ? "pending" : isActive ? "text-[#3b82f6]" : ""
           }
         >
           Contact
@@ -104,7 +114,7 @@ const Navbar = () => {
                   <div className="w-10 rounded-full">
                     <img
                       alt="Tailwind CSS Navbar component"
-                      src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+                      src={user?.photoURL || "https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"}
                     />
                   </div>
                 </div>
@@ -128,7 +138,7 @@ const Navbar = () => {
                     <a>Settings</a>
                   </li>
                   <li>
-                    <a>Logout</a>
+                    <button onClick={handleLogOut}>Logout</button>
                   </li>
                 </ul>
               </div>

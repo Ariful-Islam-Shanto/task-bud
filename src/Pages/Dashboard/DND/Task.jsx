@@ -35,7 +35,7 @@ const Task = ({ item, index }) => {
         const formattedDate = deadline.toLocaleDateString();
         return (
           <div
-            className="bg-gray-200 my-4 py-2 px-5 rounded-md w-full text-gray-900"
+            className="bg-gradient-to-r  from-[#441DFC] 0%, to-[#4E81EB] my-4 py-2 px-5 rounded-xl w-full text-gray-200"
             ref={provided.innerRef}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
@@ -47,14 +47,14 @@ const Task = ({ item, index }) => {
               }}
             >
           
-                <div className="card-body p-0 items-center text-center">
-                  <h2 className="card-title">{item?.title}</h2>
-                  <p>{item?.description}</p>
-                  <p> Deadline : {formattedDate}</p>
+                <div className="card-body h-full justify-between p-0 items-left text-left">
+                  <h2 className="card-title text-xl">{item?.title}</h2>
+                  <p className="text-gray-400">{item?.description}</p>
+                  <p className="flex-grow text-xs text-gray-400"> Deadline : {formattedDate}</p>
                   <div className="card-actions justify-end">
                     <button   onClick={() => {document.getElementById("my_modal_5").showModal()
                     handleUpdate(item)
-                }} className="btn btn-primary"><FaPenSquare/></button>
+                }} className="btn btn-ghost"><FaPenSquare/></button>
                     <button onClick={() => {
                         mutate(item?._id);
                     }} className="btn btn-ghost"><FaTrashAlt/></button>

@@ -4,22 +4,27 @@ import Task from './Task';
 
 const Column = ({title, tasks, id}) => {
     return (
-        <div className='bg-gray-100  p-4 h-full w-full border-black border-2'>
+        <div className='bg-  p-4 h-full w-full border-black border-2'>
           
-         <div className='p-2 bg-[#3e1a3b] w-full'>  <h1 className='text-center text-xl font-bold text-gray-200'>{title}</h1></div>          
+         <div className='p-2 rounded-md bg-[#3b82f6] w-full'>  <h1 className='text-center text-xl font-thin text-gray-300'>{title}</h1></div>          
             <Droppable droppableId={id}>
               {(provided, snapshot) => {
 
 return (
                 <div
-                className='h-full'
+                className='h-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 items-center gap-5'
                   ref={provided.innerRef}
                   {...provided.droppableProps}
                   style={{
-                    background: snapshot.isDraggingOver ? 'lightblue' : 'white', // Example styling
+                    background: snapshot.isDraggingOver ? 'lightblue' : '', // Example styling
                   }}
                 >
-                  {tasks?.map((item, index) => (
+                    {tasks?.length < 0 && 
+                       <div className='w-full h-full'>
+                       <h1 className='text-white'>Add Todo</h1>
+                   </div>
+                    }
+                  { tasks?.map((item, index) => (
                    <Task
                    item={item}
                    index={index}

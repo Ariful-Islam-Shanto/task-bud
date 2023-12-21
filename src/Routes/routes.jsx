@@ -7,6 +7,7 @@ import Register from '../Pages/Register/Register';
 import Dashboard from '../Pages/Dashboard/Dashboard';
 import CreateTodo from '../Pages/Dashboard/CreateTodo/CreateTodo';
 import ManageTask from '../Pages/Dashboard/DND/ManageTask';
+import AboutUs from '../Pages/About Us/AboutUs';
 
 const routes = createBrowserRouter([
     {
@@ -24,6 +25,10 @@ const routes = createBrowserRouter([
             {
                 path : '/register',
                 element : <Register/>
+            },
+            {
+                path : '/about',
+                element : <AboutUs/>
             }
         ]
     },

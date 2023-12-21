@@ -64,8 +64,8 @@ const UpdateModal = ({task}) => {
       {/* Open the modal using document.getElementById('ID').showModal() method */}
 
       <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
-        <div className="modal-box">
-            <h1 className="text-center text-2xl text-gray-700 font-thin border-b-2 border-purple-500">Update Todo</h1>
+        <div className="modal-box px-0">
+            <h1 className="text-center text-4xl stroke- stroke-slate-800 pb-5 text-gray-700 font-bold border-b-2 border-blue-500">Update Todo</h1>
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="card-body grid grid-cols-1 md:grid-cols-4"
@@ -80,7 +80,7 @@ const UpdateModal = ({task}) => {
                 name="title"
                 type="text"
                 placeholder="title"
-                className="input border-0 border-b-4 focus:border-b-2 border-gray-800"
+                className="input text-gray-700 placeholder:text-gray-700 border-0 border-b-4 focus:border-b-2 border-gray-800"
                 required
               />
             </div>
@@ -89,12 +89,12 @@ const UpdateModal = ({task}) => {
               <label className="label">
                 <span className="label-text">Priority</span>
               </label>
-              {/* <input type="text" {...register('category')} name='category'  placeholder="Category" className="input input-bordered" required /> */}
+
               <select
                 defaultValue={task?.priority}
                 {...register("priority")}
                 name="priority"
-                className=" px-5 py-3 rounded-md border-0 border-b-4 focus:border-b-2 border-gray-800"
+                className=" px-5 text-gray-700 py-3 rounded-md border-0 border-b-4 focus:border-b-2 border-gray-800"
               >
                 <option disabled value="default">
                   Select a Priority
@@ -115,7 +115,7 @@ const UpdateModal = ({task}) => {
                 name="deadline"
                 type="date"
                 placeholder="deadline"
-                className="border-0 border-b-4 focus:border-b-2 border-gray-800 input input-bordered"
+                className="border-0 text-gray-700 border-b-4 focus:border-b-2 border-gray-800 input input-bordered"
                 required
               />
             </div>
@@ -131,26 +131,27 @@ const UpdateModal = ({task}) => {
                 id=""
                 cols="30"
                 rows="2"
-                className="px-5 py-5 rounded-lg border-0 border-b-4 focus:border-b-2 border-gray-800"
+                className="px-5 text-gray-700 placeholder:text-gray-700 py-5 rounded-lg border-0 border-b-4 focus:border-b-2 border-gray-800"
                 placeholder="Description"
               ></textarea>
             </div>
 
-            <div className="form-control mt-6 w-full">
+            <div className="form-control mt-6 w-full flex items-center flex-row gap-6 justify-between">
               <button
                 type="submit"
-                className="btn bg-[#D94ACD] border-none text-gray-800 "
+                className="btn bg-blue-400 border-none text-gray-800 "
               >
                 Update
               </button>
-            </div>
-          </form>
-          <div className="modal-action">
+             
             <form method="dialog">
               {/* if there is a button in form, it will close the modal */}
               <button className="btn">Close</button>
             </form>
-          </div>
+    
+            </div>
+          </form>
+         
         </div>
       </dialog>
     </div>
