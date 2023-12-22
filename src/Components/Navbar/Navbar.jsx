@@ -58,13 +58,13 @@ const Navbar = () => {
     logOut()
     .then(res => {
         toast.success('Successfully logged out.')
-        navigate('/login')
+        navigate('/')
     })
   }
 
   return (
     <div className="bg-transparent">
-    {/* <div className="bg-[#f8f7f3]"> */}
+   
       <Container>
         <div className="navbar ">
           <div className="navbar-start">
@@ -134,9 +134,7 @@ const Navbar = () => {
                       {user?.displayName}
                     </a>
                   </li>
-                  <li>
-                    <a>Settings</a>
-                  </li>
+                  
                   <li>
                     <button onClick={handleLogOut}>Logout</button>
                   </li>

@@ -59,9 +59,6 @@ const Contact = () => {
         id="contact"
         className="border-t-2 border-b-2 border-[#03045E] py-12 space-y-8 w-full"
       >
-        {/* <h1 className="text-5xl flex items-center text-[#3b82f6] font-medium ">
-          Contact <IoIosArrowRoundForward className="text-8xl" />
-        </h1> */}
         <Container>
         <h2 className="text-3xl flex items-center font-semibold mb-4">Contact Us <IoIosArrowRoundForward className="text-5xl" /></h2>
           <div className="hero min-h-[calc(100vh-120px)] bg-transparent backdrop-blur-2xl  ">

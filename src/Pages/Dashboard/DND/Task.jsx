@@ -51,6 +51,7 @@ const Task = ({ item, index }) => {
                   <h2 className="card-title text-xl">{item?.title}</h2>
                   <p className="text-gray-400">{item?.description}</p>
                   <p className="flex-grow text-xs text-gray-400"> Deadline : {formattedDate}</p>
+                  <p className="flex-grow text-xs text-gray-400">Priority : {item?.priority}</p>
                   <div className="card-actions justify-end">
                     <button   onClick={() => {document.getElementById("my_modal_5").showModal()
                     handleUpdate(item)

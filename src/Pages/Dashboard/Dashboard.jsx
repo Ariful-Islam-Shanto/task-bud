@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 // import useRole from "../../hooks/useRole";
 // import UserMenu from "./Menu/UserMenu/UserMenu";
 // import AgentMenu from "./Menu/AgentMenu/AgentMenu";
@@ -7,7 +7,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdCloseCircle } from "react-icons/io";
 import useAuth from "../../Hooks/useAuth";
-import { FaRegUserCircle } from "react-icons/fa";
+import { FaRegUserCircle, FaSignOutAlt } from "react-icons/fa";
 import useTodo from "../../Hooks/useTodo";
 import { LuList, LuListTodo } from "react-icons/lu";
 import { FaHome } from "react-icons/fa";
@@ -15,10 +15,16 @@ import { IoMdAddCircleOutline } from "react-icons/io";
 // import { Helmet } from "react-helmet";
 
 const Dashboard = () => {
-  const { user } = useAuth();
+  const { user, logOut } = useAuth();
+  const navigate = useNavigate();
   const todos = useTodo();
   //   const [role, isLoading] = useRole();
   const [isOpen, setIsOpen] = useState();
+
+  const handleLogOut = async () => {
+     await logOut();
+     navigate('/')
+  }
 
   return (
 
@@ -81,6 +87,25 @@ const Dashboard = () => {
                     <FaHome />
                     Home
                   </a>
+                </li>
+              </NavLink>
+              <NavLink
+               
+                className={({ isActive, isPending }) =>
+                  isPending
+                    ? "pending"
+                    : isActive
+                    ? "text-white text-center bg-[#3b82f6] rounded-sm"
+                    : "text-gray-400 rounded-sm text-center"
+                }
+              >
+                <li className="flex items-center justify-center w-full">
+                  <button onClick={() => {
+                     handleLogOut();
+                  }} className="w-full flex items-center justify-center">
+                    <FaSignOutAlt/>
+                    LogOut
+                  </button>
                 </li>
               </NavLink>
             </ul>
