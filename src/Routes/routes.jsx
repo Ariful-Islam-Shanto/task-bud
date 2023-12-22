@@ -10,11 +10,13 @@ import ManageTask from '../Pages/Dashboard/DND/ManageTask';
 import AboutUs from '../Pages/About Us/AboutUs';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import Contact from '../Pages/Contact/Contact';
+import ErrorPage from '../Components/ErrorPage/ErrorPage';
 
 const routes = createBrowserRouter([
     {
         path : '/',
         element : <Layout/>,
+        errorElement : <ErrorPage/>,
         children : [
             {
                 path : '/',
