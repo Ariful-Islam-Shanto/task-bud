@@ -8,6 +8,7 @@ import Dashboard from '../Pages/Dashboard/Dashboard';
 import CreateTodo from '../Pages/Dashboard/CreateTodo/CreateTodo';
 import ManageTask from '../Pages/Dashboard/DND/ManageTask';
 import AboutUs from '../Pages/About Us/AboutUs';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
 
 const routes = createBrowserRouter([
     {
@@ -34,15 +35,15 @@ const routes = createBrowserRouter([
     },
     {
         path : 'dashboard',
-        element : <Dashboard/>,
+        element : <PrivateRoute> <Dashboard/></PrivateRoute>,
         children : [
             {
                 path : "createTodo",
-                element : <CreateTodo/>
+                element : <PrivateRoute><CreateTodo/></PrivateRoute>
             },
             {
                 path : "todo",
-                element : <ManageTask/>
+                element : <PrivateRoute><ManageTask/></PrivateRoute>
             }
         ]
     }
