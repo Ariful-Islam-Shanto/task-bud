@@ -9,6 +9,7 @@ import CreateTodo from '../Pages/Dashboard/CreateTodo/CreateTodo';
 import ManageTask from '../Pages/Dashboard/DND/ManageTask';
 import AboutUs from '../Pages/About Us/AboutUs';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
+import Contact from '../Pages/Contact/Contact';
 
 const routes = createBrowserRouter([
     {
@@ -30,6 +31,11 @@ const routes = createBrowserRouter([
             {
                 path : '/about',
                 element : <AboutUs/>
+            }
+            ,
+            {
+                path : '/contact',
+                element : <Contact/>
             }
         ]
     },
