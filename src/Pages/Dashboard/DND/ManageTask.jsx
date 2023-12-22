@@ -3,6 +3,7 @@ import { DragDropContext } from "react-beautiful-dnd";
 import Column from "./Column";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import useTodo from "../../../Hooks/useTodo";
+import toast from "react-hot-toast";
 
 const ManageTask = () => {
     const axiosPublic = useAxiosPublic();
@@ -99,13 +100,17 @@ const ManageTask = () => {
         let status;
         if(destination.droppableId === '1') {
             status = 'todo'
-        }else if(destination === '2') {
+        }else if(destination.droppableId === '2') {
             status = 'ongoing';
         }else {
             status = 'completed';
         }
         const { data } = await axiosPublic.put(`/status/${task?._id}`, {status});
-        console.log(data);
+        // console.log(data);
+        // console.log(status);
+        if(data.modifiedCount > 0) {
+            toast.success(`${task.title} is ${status}`);
+        }
     }
 
     console.log("dragged task",task);
@@ -134,7 +139,7 @@ const ManageTask = () => {
   return (
     <div className="min-h-[calc(100vh-120px)] py-3 space-y-8 flex items-left flex-col justify-center">
       <DragDropContext onDragEnd={handleDragEnd}>
-        <h1 className="text-4xl text-left font-thin text-gray-300">
+        <h1 className="text-4xl pt-3 font-thin text-gray-300 text-center ">
           Manage Todo
         </h1>
 

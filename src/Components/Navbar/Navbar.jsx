@@ -66,7 +66,7 @@ const Navbar = () => {
     <div className="bg-transparent">
     {/* <div className="bg-[#f8f7f3]"> */}
       <Container>
-        <div className="navbar">
+        <div className="navbar ">
           <div className="navbar-start">
             <div className="dropdown">
               <div
@@ -91,7 +91,7 @@ const Navbar = () => {
               </div>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-transparent backdrop-blur-2xl rounded-box w-52"
               >
                 {navOptions}
               </ul>

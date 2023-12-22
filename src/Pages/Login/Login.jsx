@@ -62,14 +62,14 @@ const Login = () => {
       <Container>
         <div className="hero min-h-screen">
           <div className="flex h-[100vh] py-10 w-full flex-col lg:flex-row gap-6">
-            <div className="flex-1 text-center lg:text-left h-full">
+            <div className="hidden lg:inline flex-1 text-center lg:text-left h-full">
               <img
                 src="https://i.postimg.cc/mrKD4Lyx/authenticaition1.png"
                 alt=""
                 className=" h-full w-full object-cover"
               />
             </div>
-            <div className="overflow-y-scroll flex-1 card shrink-0 w-full shadow-2xl bg-base-100 py-6">
+            <div className="h-[100vh] mb-10 md:mb-0 lg:h-full flex-1 overflow-y-visible lg:overflow-y-auto card shrink-0 w-full shadow-none lg:shadow-2xl  bg-base-100 py-6">
               <h1 className="text-4xl text-gray-800 font-bold text-center">
                 Welcome Back <br /> <span>Sign In</span>
               </h1>

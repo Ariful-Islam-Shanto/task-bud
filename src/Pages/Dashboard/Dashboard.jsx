@@ -19,12 +19,8 @@ const Dashboard = () => {
   const todos = useTodo();
   //   const [role, isLoading] = useRole();
   const [isOpen, setIsOpen] = useState();
-  //   console.log(role);
 
   return (
-    // style={{
-    //     background : `url("https://i.postimg.cc/cJTZb0LS/Bannger.png")`
-    //    }}
 
     <div className="drawer text-gray-300 bg-[#030a2c] backdrop-blur-2xl bg-cover">
       <input id="my-drawer" type="checkbox" className="drawer-toggle" />
@@ -89,26 +85,26 @@ const Dashboard = () => {
               </NavLink>
             </ul>
           </div>
-          <div className="flex-1 px-12 py-16 lg:py-6 ">
-            <div className="flex bg-transparent backdrop-blur-2xl border-2  rounded-lg p-4 items-center justify-between">
+          <div className="flex-1 px-6 py-16 lg:py-6 ">
+            <div className="flex bg-transparent backdrop-blur-2xl border-2  rounded-lg p-4 items-center justify-between gap-4">
               <div>
-                <p className=" text-gray-300 font-thin">
+                <p className="text-xs md:text-sm text-gray-300 font-thin">
                   Hello {user && user?.displayName}
                 </p>
-                <h1 className="text-4xl font-semibold text-gray-100">
+                <h1 className="text-md md:text-4xl font-semibold text-gray-100">
                   You have got {todos && todos.length} task today.
                 </h1>
               </div>
               <div className="flex items-center gap-2">
                 {user.photoURL ? (
-                  <div className="w-16 h-16">
+                  <div className=" w-14 md:w-16 h-14 md:h-16">
                      <img src={user?.photoURL || ""} alt="" className="h-full w-full object-cover rounded-full"/>
                   </div>
                 ) : (
                   <FaRegUserCircle className="text-6xl" />
                 )}
                 <>
-                  <h1 className=" font-medium text-gray-700">
+                  <h1 className=" font-medium text-xs md:text-sm text-gray-700">
                     {user?.displayName}
                   </h1>
                   <p>{user?.occupation ? user?.occupation : " "}</p>
@@ -131,8 +127,8 @@ const Dashboard = () => {
           aria-label="close sidebar"
           className="drawer-overlay "
         ></label>
-        <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
-          <div className=" ">
+        <ul className="menu p-4 w-80 min-h-full bg-transparent backdrop-blur-2xl text-base-content">
+          <div className="">
             <ul className="menu text-center  p-4">
               <NavLink
                 to="todo"

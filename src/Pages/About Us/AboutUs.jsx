@@ -10,7 +10,7 @@ const AboutUs = () => {
         <div className="container mx-auto p-8 max-w-2xl">
       <h2 className="text-3xl font-semibold mb-4">About Us</h2>
       <p className="text-gray-700 mb-4">
-        Welcome to Task-Bud, a Task Management Platform! We are a dedicated team of
+        Welcome to <span className='text-blue-400 text-xl font-bold'>Task-Bud</span>, a Task Management Platform! We are a dedicated team of
         innovators and problem solvers, passionate about simplifying task management and project
         collaboration.
       </p>

@@ -33,25 +33,7 @@ const Register = () => {
     }
     console.log(name, email, image, password);
 
-    // createUser(email, password)
-    // .then(res => {
-    //     if(res.user) {
-    //         updateProfile(auth.currentUser, {
-    //             displayName : name,
-    //             photoURL : null
-    //         })
-    //         .then(() => {
-    //             toast.success('Successfully Created Account')
-    //         })
-    //         .catch((error) => {
-    //             toast.error(error.message);
-    //         })
-    //     }
-    // })
-    // .catch(error => {
-    //     toast.error(error.message);
-    //     console.log(error.message);
-    // })
+
 
     try {
       // //? Host the item image into imageBB
@@ -74,14 +56,14 @@ const Register = () => {
          
           await updateProfile(auth.currentUser, {
             displayName: name,
-            photoURL: null,
+            photoURL: image,
           });
 
         //? Save user to database.
           const user = {
             name: name,
             email: email,
-            image: null,
+            image: image,
             // image: hostedImg,
             occupation: occupation,
           };
@@ -98,7 +80,7 @@ const Register = () => {
     
 
       // Clear the form after successful submission
-      // e.target.reset();
+      e.target.reset();
     }
    } catch (error) {
       console.error("Error:", error);
@@ -112,14 +94,14 @@ const Register = () => {
         <Container>
           <div className="hero min-h-screen">
             <div className="flex h-[100vh] py-10 w-full flex-col lg:flex-row gap-6">
-              <div className="flex-1 text-center lg:text-left h-full">
+              <div className="hidden lg:inline flex-1 text-center lg:text-left h-full">
                 <img
                   src="https://i.postimg.cc/mrKD4Lyx/authenticaition1.png"
                   alt=""
                   className=" h-full w-full object-cover"
                 />
               </div>
-              <div className="h-full flex-1 overflow-x-auto card shrink-0 w-full shadow-2xl bg-base-100 py-6">
+              <div className=" h-[100vh] lg:h-full flex-1 overflow-y-visible lg:overflow-y-auto card shrink-0 w-full shadow-none lg:shadow-2xl bg-base-100 py-6">
                 <h1 className="text-4xl text-gray-800 font-bold text-center">
                   Hello! Welcome <br /> <span>Sign Up</span>
                 </h1>
@@ -139,12 +121,12 @@ const Register = () => {
                   </div>
                   <div className="form-control">
                     <label className="label">
-                      <span className="label-text">Image</span>
+                      <span className="label-text">Image URL</span>
                     </label>
                     <input
                      name='image'
-                      type="file"
-                      placeholder="image"
+                      type="text"
+                      placeholder="image url"
                       className="input input-bordered"
                       required
                     />
